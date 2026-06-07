@@ -1,0 +1,3 @@
+type,size,threads,time_s,speedup_vs_seq,gflops
+# File ini akan di-generate otomatis oleh scripts/benchmark.sh
+# Jalankan: bash scripts/benchmark.sh
