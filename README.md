@@ -8,9 +8,9 @@
 
 | Nama | NIM |
 |------|-----|
-| [Nama Anggota 1] | [NIM] |
-| [Nama Anggota 2] | [NIM] |
-| [Nama Anggota 3] | [NIM] |
+| [Muhamad Halim Pratama] | [25032014016] |
+| [Diega Karunia Akbar] | [250320140--] |
+| [Brilian Nur Muhammad] | [25032014002] |
 
 ---
 
