@@ -4,7 +4,7 @@
 
 ---
 
-## 👥 Penyusun Proyek
+## Penyusun Proyek
 
 | Nama | NIM |
 |------|-----|
@@ -14,7 +14,7 @@
 
 ---
 
-## 📌 Deskripsi Proyek
+## Deskripsi Proyek
 
 Proyek ini mengimplementasikan **perkalian matriks (Matrix Multiplication)** menggunakan tiga pendekatan:
 
@@ -36,7 +36,20 @@ Tujuan utama adalah membandingkan performa ketiga pendekatan melalui **speedup**
 
 ---
 
-## 🛠️ Cara Build & Run (macOS Intel)
+## Cara Build & Run (macOS Intel)
+cari file di folder : cd Desktop/cpp/matmul-heterogeneous\ 2
+cara run CPU : clang -O2 \
+  -Xclang -fopenmp \
+  -I/usr/local/opt/libomp/include \
+  -L/usr/local/opt/libomp/lib \
+  -lomp \
+  src/matmul_cpu.c -o src/matmul_cpu
+
+./src/matmul_cpu 512 4 (sesuaikan ukuran matriks)
+
+cara run GPU : clang -O2 src/matmul_gpu.c -framework OpenCL -o src/matmul_gpu
+
+KERNEL_PATH=src/matmul.cl ./src/matmul_gpu 512 (sesuaikan ukuran matriks)
 
 ### Prasyarat
 
@@ -86,7 +99,7 @@ bash scripts/benchmark.sh
 
 ---
 
-## 📁 Struktur Repository
+## Struktur Repository
 
 ```
 matmul-heterogeneous/
@@ -111,31 +124,22 @@ matmul-heterogeneous/
 
 > 📹 (https://youtu.be/dMK3x51pHRQ)
 
-**Isi video:**
-1. Perkenalan singkat, topik, dan tujuan
-2. Demo sistem berjalan (build + run live)
-3. Penjelasan kode: sequential, OpenMP, OpenCL kernel
-4. Output benchmark (timing, speedup, GFLOPS)
-5. Analisis bottleneck dan kesimpulan
-
 ---
 
-## 📊 Contoh Hasil Benchmark
+## Hasil Benchmark
 
 *(Dijalankan di MacBook Intel Core i5, Intel Iris Plus Graphics)*
 
 | Ukuran | Sequential | OpenMP (4T) | OpenCL | Speedup OMP | Speedup OCL |
 |--------|-----------|-------------|--------|-------------|-------------|
-| 128×128 | ~0.003s | ~0.002s | ~0.005s | ~1.5× | ~0.6× |
-| 256×256 | ~0.025s | ~0.010s | ~0.015s | ~2.5× | ~1.7× |
-| 512×512 | ~0.19s  | ~0.06s  | ~0.08s  | ~3.2× | ~2.4× |
-| 1024×1024 | ~1.5s | ~0.45s  | ~0.55s  | ~3.3× | ~2.7× |
-
-> ⚠️ Nilai di atas adalah estimasi ilustratif. Jalankan `benchmark.sh` untuk hasil aktual di hardware kamu.
+| 128×128 | ~0.0014s | ~0.0028s | ~0.0008s | ~0.48× | ~0.56× |
+| 256×256 | ~0.0082s | ~0.0041s | ~0.0026s | ~2.03× | ~1.09× |
+| 512×512 | ~0.0510s  | ~0.0188s  | ~0.0175s  | ~2.71× | ~2.03× |
+| 1024×1024 | ~0.5983s | ~0.1565s  | ~0.1103s  | ~3.82× | ~1.04× |
 
 ---
 
-## 🔍 Analisis Singkat
+## Analisis Singkat
 
 - **OpenMP** efektif untuk matriks besar karena distribusi baris antar thread mengurangi serial fraction
 - **OpenCL** pada integrated GPU lebih lambat dari dedicated GPU karena berbagi memori dengan CPU (unified memory), sehingga transfer data tidak se-efisien dedicated VRAM
@@ -144,7 +148,7 @@ matmul-heterogeneous/
 
 ---
 
-## ⚙️ Catatan Teknis
+## Catatan Teknis
 
 - OpenCL di macOS berstatus **deprecated sejak macOS 10.14**, namun masih fungsional pada Intel Mac
 - Kernel menggunakan `double` precision — pastikan device mendukung `cl_khr_fp64` extension
