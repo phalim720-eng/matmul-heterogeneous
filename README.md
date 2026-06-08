@@ -9,7 +9,7 @@
 | Nama | NIM |
 |------|-----|
 | [Muhamad Halim Pratama] | [25032014016] |
-| [Diega Karunia Akbar] | [250320140--] |
+| [Diega Karunia Akbar] | [25032014060] |
 | [Brilian Nur Muhammad] | [25032014002] |
 
 ---
@@ -109,7 +109,7 @@ matmul-heterogeneous/
 
 ## 🎥 Video Demo
 
-> 📹 [Link YouTube — akan diisi setelah upload]
+> 📹 (https://youtu.be/dMK3x51pHRQ)
 
 **Isi video:**
 1. Perkenalan singkat, topik, dan tujuan
